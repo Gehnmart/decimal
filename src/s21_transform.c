@@ -7,7 +7,7 @@
 
 int s21_from_decimal_to_int(s21_decimal src, int *dst) {
   int error = 0;
-  long long int ds;
+  long long int ds = 0;
   comm_byte byte;
   byte.bits = src.bits[3];
   if (byte.bite.exp) {

@@ -24,14 +24,6 @@ typedef union {
   } bite;
 } comm_byte;
 
-typedef union {
-  float bits;
-  struct {
-    int mant : 23;
-    char exp : 8;
-    char unar : 1;
-  } bite;
-} float_bit;
 
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
 int s21_sub(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
