@@ -31,6 +31,7 @@ gcov_report: $(TARGET) test
 	open ./gcov_report/index.html
 
 
+
 test: $(TEST_OBJ_DECIMAL) $(TARGET) 
 	$(CC) -std=c11 $(TEST_OBJ_DECIMAL) $(LDFLAGS) $(TARGET) -o tests/$@
 	./tests/test
