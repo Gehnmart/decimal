@@ -1,4 +1,4 @@
-.PHONY: clean gcov_report rebuild test
+.PHONY: clean gcov_report rebuild test test_compile check
 CC = gcc
 CFLAGS := -std=c11 -Wall -Wextra -Werror
 
@@ -22,7 +22,7 @@ all: $(TARGET)
 
 $(TARGET): $(DECIMAL_OBJS)
 	ar rcs $@ $^ $(DECIMAL_OBJS)
-	mv *.o obj
+
 gcov_report: CFLAGS += -fprofile-arcs -ftest-coverage
 gcov_report: LDFLAGS += -lgcov
 gcov_report: $(TARGET) test
@@ -30,14 +30,19 @@ gcov_report: $(TARGET) test
 	genhtml ./app.info -o ./gcov_report
 	open ./gcov_report/index.html
 
-
+test_compile: $(TEST_OBJ_DECIMAL) $(TARGET)
+	$(CC) -std=c11 $(TEST_OBJ_DECIMAL) $(LDFLAGS) $(TARGET) -o tests/test
 
 test: $(TEST_OBJ_DECIMAL) $(TARGET) 
 	$(CC) -std=c11 $(TEST_OBJ_DECIMAL) $(LDFLAGS) $(TARGET) -o tests/$@
 	./tests/test
-	mv *.o obj
+
 test%.o: test%.c
 	$(CC) -std=c11 -c $< $(LDFLAGS) -o $@
+
+check: test_compile
+	clang-format --style=Google -n *.c
+	CK_FORK=no valgrind --tool=memcheck --leak-check=yes tests/test
 
 clean:
 	rm -rf gcov_report

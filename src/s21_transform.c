@@ -18,22 +18,15 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
       error = 1;
       break;
     }
-    if (src.bits[i] != 0 && byte.bite.unar) {
-      error = 2;
-      break;
-    }
   }
   ds = (long long int)src.bits[0];
   if (byte.bite.unar) {
     ds *= -1;
   }
-  if (ds > INT_MAX) {
+  if (ds > INT_MAX || ds < INT_MIN) {
     error = 1;
     *dst = INT_MAX;
-  } else if (ds < INT_MIN) {
-    error = 2;
-    *dst = INT_MIN;
-  } else {
+  }  else {
     *dst = ds;
   }
 
