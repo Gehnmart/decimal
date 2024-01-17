@@ -46,6 +46,7 @@ valgrind: test_compile
 	CK_FORK=no valgrind --tool=memcheck --leak-check=yes tests/test
 
 clang-format:
+	cp ../materials/linters/.clang-format .
 	clang-format --style=Google -n *.c *.h
 	clang-format --style=Google -n tests/*.c tests/*.h
 
