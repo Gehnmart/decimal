@@ -46,7 +46,7 @@ valgrind: test_compile
 	CK_FORK=no valgrind --tool=memcheck --leak-check=yes tests/test
 
 clang-format:
-	clang-format --style=Google -n *.c
+	clang-format --style=Google -n *.c *.h
 
 clean:
 	rm -rf gcov_report

@@ -26,7 +26,7 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
   if (ds > INT_MAX || ds < INT_MIN) {
     error = 1;
     *dst = INT_MAX;
-  }  else {
+  } else {
     *dst = ds;
   }
 
