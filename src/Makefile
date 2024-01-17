@@ -22,6 +22,7 @@ all: $(TARGET)
 
 $(TARGET): $(DECIMAL_OBJS)
 	ar rcs $@ $^ $(DECIMAL_OBJS)
+	mv *.o obj
 
 gcov_report: CFLAGS += -fprofile-arcs -ftest-coverage
 gcov_report: LDFLAGS += -lgcov
@@ -35,6 +36,7 @@ test_compile: $(TEST_OBJ_DECIMAL) $(TARGET)
 
 test: $(TEST_OBJ_DECIMAL) $(TARGET) 
 	$(CC) -std=c11 $(TEST_OBJ_DECIMAL) $(LDFLAGS) $(TARGET) -o tests/$@
+	mv tests/*.o tests/obj
 	./tests/test
 
 test%.o: test%.c
@@ -53,6 +55,6 @@ clean:
 	rm -rf gcov_report
 	rm -f $(TARGET)
 	rm -rf *.o *.gcda *.gcno app.info
-	rm -rf obj/*.o
-	rm tests/*.o tests/test
+	rm -rf obj/*.o tests/obj/*.o
+	rm tests/test
 
