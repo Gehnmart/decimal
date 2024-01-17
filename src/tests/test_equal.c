@@ -2,7 +2,7 @@
 
 #include "../s21_decimal.h"
 #include "test.h"
-#line 1 "test_equal.check"
+#line 1
 START_TEST(s21_s21_is_equal_1) {
   s21_decimal src1, src2;
 
@@ -25,6 +25,8 @@ START_TEST(s21_s21_is_equal_1) {
 
   ck_assert_int_eq(origin, result);
 }
+END_TEST
+
 START_TEST(s21_s21_is_equal_2) {
 #line 23
 
