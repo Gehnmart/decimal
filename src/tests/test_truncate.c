@@ -8,7 +8,7 @@
 #include "../s21_decimal.h"
 #include "test.h"
 
-#line 1 "text_test/test_truncate.txt"
+#line 1
 START_TEST(s21_truncate1) {
 #line 2
 
