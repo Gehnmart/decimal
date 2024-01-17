@@ -35,7 +35,6 @@ test_compile: $(TEST_OBJ_DECIMAL) $(TARGET)
 
 test: $(TEST_OBJ_DECIMAL) $(TARGET) 
 	$(CC) -std=c11 $(TEST_OBJ_DECIMAL) $(LDFLAGS) $(TARGET) -o tests/$@
-	mv tests/*.o tests/obj
 	./tests/test
 
 test%.o: test%.c
