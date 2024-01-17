@@ -40,13 +40,14 @@ test: $(TEST_OBJ_DECIMAL) $(TARGET)
 test%.o: test%.c
 	$(CC) -std=c11 -c $< $(LDFLAGS) -o $@
 
-check: valgrind clnag-format
+check: valgrind clang-format
 
 valgrind: test_compile
 	CK_FORK=no valgrind --tool=memcheck --leak-check=yes tests/test
 
 clang-format:
 	clang-format --style=Google -n *.c *.h
+	clang-format --style=Google -n tests/*.c tests/*.h
 
 clean:
 	rm -rf gcov_report
