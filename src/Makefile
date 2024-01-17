@@ -54,6 +54,6 @@ clean:
 	rm -rf gcov_report
 	rm -f $(TARGET)
 	rm -rf *.o *.gcda *.gcno app.info
-	rm -rf obj/*.o tests/obj/*.o
+	rm -rf obj/*.o tests/obj/*.o tests/*.o
 	rm tests/test
 
