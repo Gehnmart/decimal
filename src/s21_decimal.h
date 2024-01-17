@@ -1,10 +1,10 @@
 #ifndef S21_DECIMAL_H
 #define S21_DECIMAL_H
 
+#include <math.h>
+
 #define LEFT_BIT 0b10000000000000000000000000000000
 #define RIGHT_BIT 0b00000000000000000000000000000001
-
-#include <math.h>
 
 typedef struct {
   unsigned int bits[4];

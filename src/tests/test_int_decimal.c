@@ -8,7 +8,7 @@
 #include "../s21_decimal.h"
 #include "test.h"
 
-#line 1 "text_test/test_int_to_decimal.txt"
+#line 1
 START_TEST(s21_from_int_to_decimal1) {
 #line 2
 

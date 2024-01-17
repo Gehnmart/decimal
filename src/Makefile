@@ -24,7 +24,7 @@ $(TARGET): $(DECIMAL_OBJS)
 	ar rcs $@ $^ $(DECIMAL_OBJS)
 
 gcov_report: CFLAGS += -fprofile-arcs -ftest-coverage
-gcov_report: LDFLAGS += -lgcov
+gcov_report: LDFLAGS += -lgcov --coverage
 gcov_report: $(TARGET) test
 	lcov --directory . --capture --output-file ./app.info
 	genhtml ./app.info -o ./gcov_report
@@ -53,6 +53,8 @@ clean:
 	rm -rf gcov_report
 	rm -f $(TARGET)
 	rm -rf *.o *.gcda *.gcno app.info
+	rm -rf *.o tests/*.gcda tests/*.gcno tests/app.info
 	rm -rf obj/*.o tests/obj/*.o
-	rm tests/test
+	rm -rf tests/test
+	rm -rf tests/*.o
 
