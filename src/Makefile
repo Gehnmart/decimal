@@ -1,4 +1,4 @@
-.PHONY: clean gcov_report rebuild test test_compile check
+.PHONY: clean gcov_report rebuild test test_compile check valgrind clnag-format
 CC = gcc
 CFLAGS := -std=c11 -Wall -Wextra -Werror
 
@@ -40,9 +40,13 @@ test: $(TEST_OBJ_DECIMAL) $(TARGET)
 test%.o: test%.c
 	$(CC) -std=c11 -c $< $(LDFLAGS) -o $@
 
-check: test_compile
-	clang-format --style=Google -n *.c
+check: valgrind clnag-format
+
+valgrind: test_compile
 	CK_FORK=no valgrind --tool=memcheck --leak-check=yes tests/test
+
+clang-format:
+	clang-format --style=Google -n *.c
 
 clean:
 	rm -rf gcov_report
