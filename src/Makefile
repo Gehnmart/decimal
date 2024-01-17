@@ -22,7 +22,6 @@ all: $(TARGET)
 
 $(TARGET): $(DECIMAL_OBJS)
 	ar rcs $@ $^ $(DECIMAL_OBJS)
-	mv *.o obj
 
 gcov_report: CFLAGS += -fprofile-arcs -ftest-coverage
 gcov_report: LDFLAGS += -lgcov
